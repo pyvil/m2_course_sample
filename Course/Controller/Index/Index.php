@@ -39,7 +39,10 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
 
         $page->getLayout()->getUpdate()->addHandle('course_default');
 
-        $page->getLayout()->getBlock('simple_page')->setData('vasya2', $this->getRequest()->getParam('message'));
+        $this->_eventManager->dispatch(
+            'after_index_action_execute',
+            ['page' => $page, 'current_action' => $this]
+        );
 
         return $page;
     }

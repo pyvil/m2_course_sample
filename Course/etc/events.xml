@@ -3,4 +3,7 @@
     <event name="controller_action_predispatch_course_index_index">
         <observer name="predispatch_action_course_index_index" instance="\Smile\Course\Observer\IndexActionPredispatch" />
     </event>
+    <event name="after_index_action_execute">
+        <observer name="after_index_action_execute_realisation" instance="\Smile\Course\Observer\IndexActionAfterExecution" />
+    </event>
 </config>
