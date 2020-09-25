@@ -3,8 +3,12 @@ namespace Smile\Customer\Plugin;
 
 class CustomerDashboard
 {
-    public function afterGetName($object, $result)
+    public function afterGetSubscriptionText($subject, $result)
     {
-        return __('%1 %2', $result, get_class($object));
+        if (!$subject->getSubscriptionObject()->isSubscribed()) {
+            return __('You are potatoes, as you are not subscribe !');
+        }
+
+        return $result;
     }
 }
