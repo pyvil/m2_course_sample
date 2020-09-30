@@ -1,0 +1,2 @@
+code,label,type,input,required,visible,sort_order,user_defined,position,source,validate_rules,used_in_forms,default,backend,option,system,frontend_labels
+qualification,Qualification client,int,select,1,1,145,1,145,Magento\Eav\Model\Entity\Attribute\Source\Table,a:0:{},"adminhtml_checkout,adminhtml_customer,customer_account_create,customer_account_edit",Exibitor,,"a:3:{i:0;a:1:{i:0;s:9:""Exhibitor"";}i:1;a:1:{i:0;s:9:""Decorator"";}i:2;a:1:{i:0;s:6:""Agency"";}}",0,You are

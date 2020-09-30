@@ -1,4 +1,13 @@
 <?php
+/**
+ * Observer IndexActionAfterExecution
+ *
+ * @category  Smile
+ * @package   Smile\Course
+ * @author    Vitaliy Pyatin <vipya@smile.fr>
+ * @copyright 2020 Smile
+ */
+
 namespace Smile\Course\Controller\Index;
 
 use Magento\Framework\App\Action\Action;
@@ -8,7 +17,9 @@ use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\View\Result\PageFactory;
 
 /**
- * Home page. Needs to be accessible by POST because of the store switching.
+ * Class Index
+ *
+ * @package Smile\Course\Controller\Index
  */
 class Index extends Action implements HttpGetActionInterface, HttpPostActionInterface
 {
@@ -19,6 +30,7 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
 
     /**
      * Index constructor.
+     *
      * @param Context $context
      * @param PageFactory $resultPageFactory
      */
@@ -31,19 +43,13 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
     }
 
     /**
+     * Execute
+     *
      * @return \Magento\Framework\View\Result\Page
      */
     public function execute()
     {
         $page = $this->resultPageFactory->create();
-
-        $page->getLayout()->getUpdate()->addHandle('course_default');
-
-        $this->_eventManager->dispatch(
-            'after_index_action_execute',
-            ['page' => $page, 'current_action' => $this]
-        );
-
         return $page;
     }
 }

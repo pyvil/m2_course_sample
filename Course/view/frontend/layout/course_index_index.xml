@@ -12,12 +12,21 @@
                 />
             </referenceContainer>
         </referenceContainer>
-        <!--<referenceContainer name="content">
+        <referenceContainer name="content">
             <block class="Smile\Course\Block\Page" name="simple_page" template="Smile_Course::meta.phtml">
                 <arguments>
                     <argument name="vasya" xsi:type="string">Lol</argument>
                 </arguments>
+                <block class="Magento\Framework\View\Element\Template"
+                       name="block2"
+                       template="Smile_Course::meta2.phtml"
+                >
+                    <block class="Magento\Framework\View\Element\Template"
+                           name="block3"
+                           template="Smile_Course::meta3.phtml"
+                    />
+                </block>
             </block>
-        </referenceContainer>-->
+        </referenceContainer>
     </body>
 </page>
