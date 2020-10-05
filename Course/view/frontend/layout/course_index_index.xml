@@ -15,8 +15,19 @@
         <referenceContainer name="content">
             <block class="Smile\Course\Block\Page" name="simple_page" template="Smile_Course::meta.phtml">
                 <arguments>
-                    <argument name="vasya" xsi:type="string">Lol</argument>
+                    <argument name="testArrayData" xsi:type="array">
+                        <item name="test1" xsi:type="string">value 1</item>
+                        <item name="test2" xsi:type="string">value 2</item>
+                        <item name="test3" xsi:type="string">value 3</item>
+                        <item name="testObject" xsi:type="object">Smile\Course\ViewModel\Page</item>
+                    </argument>
+                    <argument name="testArrayData22" xsi:type="array">
+                        <item name="test1" xsi:type="string">value 1</item>
+                        <item name="test2" xsi:type="string">value 2</item>
+                        <item name="test3" xsi:type="string">value 3</item>
+                    </argument>
                 </arguments>
+
                 <block class="Magento\Framework\View\Element\Template"
                        name="block2"
                        template="Smile_Course::meta2.phtml"
