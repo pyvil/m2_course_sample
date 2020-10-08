@@ -17,6 +17,17 @@ namespace Smile\Customer\Plugin;
 class CustomerDashboardInfo
 {
     /**
+     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     */
+    protected $scopeConfig;
+
+    public function __construct(
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+    ) {
+        $this->scopeConfig = $scopeConfig;
+    }
+
+    /**
      * After get name
      *
      * @param $object
@@ -40,6 +51,12 @@ class CustomerDashboardInfo
     public function aroundGetName($object, $realFunction)
     {
         $result = $realFunction();
-        return __('%1 => (%2)', $result, $object->getCustomer()->getCreatedAt());
+
+        $data = '';
+        if ($this->scopeConfig->getValue('god_mode/details/is_after_customer_name_visible')) {
+            $data = $this->scopeConfig->getValue('god_mode/details/after_customer_name');
+        }
+
+        return __('%1 => (%2)', $result, $data);
     }
 }

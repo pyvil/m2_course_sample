@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <god_mode>
+            <details>
+                <after_customer_name>This is Sparta !!!</after_customer_name>
+                <is_after_customer_name_visible>0</is_after_customer_name_visible>
+            </details>
+        </god_mode>
+    </default>
+</config>

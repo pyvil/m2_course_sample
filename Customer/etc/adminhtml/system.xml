@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="god_mode" translate="label" sortOrder="130" showInDefault="1" showInStore="1" showInWebsite="1">
+            <label>God mode</label>
+            <tab>customer</tab>
+            <resource>Magento_Backend::admin</resource>
+
+            <group id="details" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>Details</label>
+
+                <field id="after_customer_name" type="text" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label comment">
+                    <label>After customer name</label>
+                    <comment>This text will be displayed after you name in customer account</comment>
+
+                    <depends>
+                        <field id="god_mode/details/is_after_customer_name_visible">1</field>
+                    </depends>
+                </field>
+                <field id="is_after_customer_name_visible" type="select" translate="label comment" showInWebsite="1" showInStore="1" showInDefault="1" sortOrder="10">
+                    <label>Is active - after customer name</label>
+                    <comment>Is field After customer name active</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
