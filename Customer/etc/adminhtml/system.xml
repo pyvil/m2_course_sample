@@ -22,6 +22,10 @@
                     <comment>Is field After customer name active</comment>
                     <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
                 </field>
+                <field id="allowed_sizes" type="multiselect" translate="label comment" showInWebsite="1" showInStore="1" showInDefault="1" sortOrder="10">
+                    <label>Allowed sized</label>
+                    <source_model>Smile\Customer\Model\Config\Source\CustomerStuffMultiselect</source_model>
+                </field>
             </group>
         </section>
     </system>
