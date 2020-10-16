@@ -4,11 +4,10 @@
         <section id="god_mode" translate="label" sortOrder="130" showInDefault="1" showInStore="1" showInWebsite="1">
             <label>God mode</label>
             <tab>customer</tab>
-            <resource>Magento_Backend::admin</resource>
+            <resource>Smile_Customer::system_config_god_mode</resource>
 
             <group id="details" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
                 <label>Details</label>
-
                 <field id="after_customer_name" type="text" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label comment">
                     <label>After customer name</label>
                     <comment>This text will be displayed after you name in customer account</comment>

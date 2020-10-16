@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="customer_visited_url" resource="default" engine="innodb" comment="Urls customer(s) visited">
+        <column xsi:type="int" name="id" padding="11" unsigned="true" nullable="false" identity="true"
+                comment="ID"/>
+        <column xsi:type="int" name="customer_id" nullable="true" padding="10" comment="customer id" unsigned="true"/>
+        <column xsi:type="varchar" name="visited_url" nullable="false" length="255" comment="Visited url"/>
+        <column xsi:type="datetime" name="created_at" default="CURRENT_TIMESTAMP" comment="From"/>
+        <column xsi:type="smallint" name="is_active" padding="6" unsigned="false" nullable="false"
+                default="0" comment="Is Active"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="CUSTOMER_VISITED_URL_customer_id_CUSTOMER_ENTITY_entity_id"
+                    table="customer_visited_url"
+                    column="customer_id"
+                    referenceTable="customer_entity"
+                    referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+    </table>
+</schema>
