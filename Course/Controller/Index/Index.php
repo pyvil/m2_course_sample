@@ -10,7 +10,6 @@
 
 namespace Smile\Course\Controller\Index;
 
-use Magento\Cms\Api\BlockRepositoryInterface;
 use Magento\Cms\Api\GetBlockByIdentifierInterface;
 use Magento\Framework\Api\SearchCriteriaInterface as SearchCriteriaInterfaceAlias;
 use Magento\Framework\App\Action\Action;
@@ -20,6 +19,7 @@ use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\View\Result\PageFactory;
 use Smile\Customer\Api\CustomerVisitedUrlsRepositoryInterface;
 use Smile\Customer\Api\Data\CustomerVisitedUrlsInterfaceFactory;
+use Smile\Customer\Api\Data\CustomerVisitedUrlsInterface;
 
 /**
  * Class Index
@@ -61,7 +61,6 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
      * @param Context $context
      * @param PageFactory $resultPageFactory
      * @param GetBlockByIdentifierInterface $getBlockByIdentifier
-     * @param BlockRepositoryInterface $blockRepository
      * @param SearchCriteriaInterfaceAlias $searchCriteria
      * @param CustomerVisitedUrlsInterfaceFactory $visitedUrlsInterfaceFactory
      * @param CustomerVisitedUrlsRepositoryInterface $customerVisitedUrlsRepository
@@ -70,15 +69,14 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
         Context $context,
         PageFactory $resultPageFactory,
         GetBlockByIdentifierInterface $getBlockByIdentifier,
-        BlockRepositoryInterface $blockRepository,
         SearchCriteriaInterfaceAlias $searchCriteria,
         CustomerVisitedUrlsInterfaceFactory $visitedUrlsInterfaceFactory,
+        CustomerVisitedUrlsInterface $visitedUrlsInterface,
         CustomerVisitedUrlsRepositoryInterface $customerVisitedUrlsRepository
     ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
         $this->getBlockByIdentifier = $getBlockByIdentifier;
-        $this->blockRepository = $blockRepository;
         $this->searchCriteria = $searchCriteria;
         $this->visitedUrlsInterfaceFactory = $visitedUrlsInterfaceFactory;
         $this->customerVisitedUrlsRepository = $customerVisitedUrlsRepository;

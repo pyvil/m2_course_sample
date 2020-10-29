@@ -20,6 +20,13 @@ interface CustomerVisitedUrlsInterface
     const IS_ACTIVE = 'is_active';
     /**#@-*/
 
+    /**#@+
+     * IS_ACTIVE states
+     */
+    const ENABLED = 1;
+    const DISABLED = 0;
+    /**#@-*/
+
     public function getCustomerId() : ?int;
     public function getVisitedUrl() : string;
     public function getCreatedAt() : string;
