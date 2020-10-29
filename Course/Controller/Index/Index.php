@@ -12,13 +12,14 @@ namespace Smile\Course\Controller\Index;
 
 use Magento\Cms\Api\BlockRepositoryInterface;
 use Magento\Cms\Api\GetBlockByIdentifierInterface;
-use Magento\Cms\Model\BlockRepository;
 use Magento\Framework\Api\SearchCriteriaInterface as SearchCriteriaInterfaceAlias;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\View\Result\PageFactory;
+use Smile\Customer\Api\CustomerVisitedUrlsRepositoryInterface;
+use Smile\Customer\Api\Data\CustomerVisitedUrlsInterfaceFactory;
 
 /**
  * Class Index
@@ -40,17 +41,19 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
     protected $getBlockByIdentifier;
 
     /**
-     * @var BlockRepositoryInterface
-     */
-    private $blockRepository;
-    /**
      * @var SearchCriteriaInterfaceAlias
      */
-    private $searchCriteria;
+    protected $searchCriteria;
+
     /**
-     * @var Context
+     * @var CustomerVisitedUrlsInterfaceFactory
      */
-    private $context;
+    protected $visitedUrlsInterfaceFactory;
+
+    /**
+     * @var CustomerVisitedUrlsRepositoryInterface
+     */
+    protected $customerVisitedUrlsRepository;
 
     /**
      * Index constructor.
@@ -60,19 +63,25 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
      * @param GetBlockByIdentifierInterface $getBlockByIdentifier
      * @param BlockRepositoryInterface $blockRepository
      * @param SearchCriteriaInterfaceAlias $searchCriteria
+     * @param CustomerVisitedUrlsInterfaceFactory $visitedUrlsInterfaceFactory
+     * @param CustomerVisitedUrlsRepositoryInterface $customerVisitedUrlsRepository
      */
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory,
         GetBlockByIdentifierInterface $getBlockByIdentifier,
         BlockRepositoryInterface $blockRepository,
-        SearchCriteriaInterfaceAlias $searchCriteria
+        SearchCriteriaInterfaceAlias $searchCriteria,
+        CustomerVisitedUrlsInterfaceFactory $visitedUrlsInterfaceFactory,
+        CustomerVisitedUrlsRepositoryInterface $customerVisitedUrlsRepository
     ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
         $this->getBlockByIdentifier = $getBlockByIdentifier;
         $this->blockRepository = $blockRepository;
         $this->searchCriteria = $searchCriteria;
+        $this->visitedUrlsInterfaceFactory = $visitedUrlsInterfaceFactory;
+        $this->customerVisitedUrlsRepository = $customerVisitedUrlsRepository;
     }
 
     /**
@@ -83,8 +92,14 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
     public function execute()
     {
         $page = $this->resultPageFactory->create();
-        $block = $this->getBlockByIdentifier->execute(self::BLOCK_IDENTIFIER, 0);
-        $collection = $this->blockRepository->getList($this->searchCriteria);
+
+        $model = $this->visitedUrlsInterfaceFactory->create();
+        $model->setCustomerId(null)
+            ->setVisitedUrl($this->getRequest()->getUri())
+            ->setIsActive(1);
+
+        $this->customerVisitedUrlsRepository->save($model);
+
         return $page;
     }
 }

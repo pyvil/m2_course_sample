@@ -4,6 +4,7 @@ namespace Smile\Customer\Model\ResourceModel;
 
 use Magento\Catalog\Model\Product;
 use Magento\Framework\Model\AbstractModel;
+use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
 use Smile\Customer\Api\Data\CustomerVisitedUrlsInterface;
 
@@ -12,7 +13,7 @@ use Smile\Customer\Api\Data\CustomerVisitedUrlsInterface;
  *
  * @package Smile\Customer\Model\ResourceModel
  */
-class CustomerVisitedUrls extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
+class CustomerVisitedUrls extends AbstractDb
 {
     /**
      * Initialize main table and table id field
@@ -22,6 +23,6 @@ class CustomerVisitedUrls extends \Magento\Framework\Model\ResourceModel\Db\Abst
      */
     protected function _construct()
     {
-        $this->_init('customer_visited_url', CustomerVisitedUrlsInterface::ID);
+        $this->_init('customer_visited_urls', CustomerVisitedUrlsInterface::ID);
     }
 }

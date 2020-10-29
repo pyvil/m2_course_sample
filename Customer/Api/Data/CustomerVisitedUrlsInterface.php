@@ -20,12 +20,12 @@ interface CustomerVisitedUrlsInterface
     const IS_ACTIVE = 'is_active';
     /**#@-*/
 
-    public function getCustomerId() : int;
+    public function getCustomerId() : ?int;
     public function getVisitedUrl() : string;
     public function getCreatedAt() : string;
     public function isActive() : bool;
 
-    public function setCustomerId(int $customerId) : self;
+    public function setCustomerId(?int $customerId) : self;
     public function setVisitedUrl(string $url) : self;
     public function setCreatedAt(string $createdAt) : self;
     public function setIsActive(bool $isActive) : self;

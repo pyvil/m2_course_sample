@@ -13,4 +13,10 @@
     <type name="Magento\Customer\Block\Account\Dashboard">
         <plugin name="smile_customer_dashboard_plugin" type="Smile\Customer\Plugin\CustomerDashboard" sortOrder="10"/>
     </type>
+
+    <preference for="Smile\Customer\Api\Data\CustomerVisitedUrlsInterface"
+                type="Smile\Customer\Model\CustomerVisitedUrls"/>
+
+    <preference for="Smile\Customer\Api\CustomerVisitedUrlsRepositoryInterface"
+                type="Smile\Customer\Model\CustomerVisitedUrlsRepository"/>
 </config>
