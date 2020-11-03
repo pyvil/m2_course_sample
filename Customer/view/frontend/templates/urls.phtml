@@ -1,0 +1,18 @@
+<?php
+/** @var $block \Smile\Customer\Block\VisitedUrls */
+?>
+
+<table>
+    <tr>
+    <td><?php echo __('Customer id')?></td>
+    <td><?php echo __('Visited url')?></td>
+    <td><?php echo __('Is active')?></td>
+    </tr>
+    <?php foreach ($block->getCustomerUrls()->getItems() as $item): ?>
+    <tr>
+        <td><?php echo $item->getCustomerId() ?: 'visitor'?></td>
+        <td><?php echo $item->getVisitedUrl(); ?></td>
+        <td><?php echo $item->getIsAcive() ? 'Enabled' : 'Disabled'; ?></td>
+    </tr>
+    <?php endforeach; ?>
+</table>

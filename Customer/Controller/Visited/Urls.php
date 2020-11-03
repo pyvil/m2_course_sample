@@ -1,35 +1,32 @@
 <?php
 /**
- * Observer IndexActionAfterExecution
+ *
  *
  * @category  Smile
- * @package   Smile\Course
+ * @package   Smile\Customer
  * @author    Vitaliy Pyatin <vipya@smile.fr>
  * @copyright 2020 Smile
  */
 
-namespace Smile\Course\Controller\Index;
+namespace Smile\Customer\Controller\Visited;
 
 use Magento\Cms\Api\GetBlockByIdentifierInterface;
 use Magento\Framework\Api\SearchCriteriaInterface as SearchCriteriaInterfaceAlias;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Action\HttpGetActionInterface;
-use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\View\Result\PageFactory;
 use Smile\Customer\Api\CustomerVisitedUrlsRepositoryInterface;
-use Smile\Customer\Api\Data\CustomerVisitedUrlsInterfaceFactory;
 use Smile\Customer\Api\Data\CustomerVisitedUrlsInterface;
+use Smile\Customer\Api\Data\CustomerVisitedUrlsInterfaceFactory;
 
 /**
- * Class Index
+ * Class Urls
  *
- * @package Smile\Course\Controller\Index
+ * @package Smile\Customer\Controller\Visited
  */
-class Index extends Action implements HttpGetActionInterface, HttpPostActionInterface
+class Urls extends Action implements HttpGetActionInterface
 {
-    const BLOCK_IDENTIFIER = 'women-block';
-
     /**
      * @var PageFactory
      */
@@ -90,12 +87,6 @@ class Index extends Action implements HttpGetActionInterface, HttpPostActionInte
     public function execute()
     {
         $page = $this->resultPageFactory->create();
-        $model = $this->visitedUrlsInterfaceFactory->create();
-        $model->setCustomerId(null)
-            ->setVisitedUrl($this->getRequest()->getUri())
-            ->setIsActive(1);
-
-        $this->customerVisitedUrlsRepository->save($model);
 
         return $page;
     }
