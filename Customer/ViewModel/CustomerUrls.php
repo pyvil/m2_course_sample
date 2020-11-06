@@ -40,16 +40,12 @@ class CustomerUrls implements \Magento\Framework\View\Element\Block\ArgumentInte
      */
     public function getNoLoginCustomerVisitedUrls()
     {
-        $searchCriteria = $this->searchCriteriaBuilder->addFilter(
-            CustomerVisitedUrlsInterface::CUSTOMER_ID,
-            null,
-            'null'
-        )
+        $searchCriteria = $this->searchCriteriaBuilder
         ->addFilter(
-            CustomerVisitedUrlsInterface::IS_ACTIVE,
+            'main_table.' . CustomerVisitedUrlsInterface::IS_ACTIVE,
             CustomerVisitedUrlsInterface::ENABLED
         )->create();
 
-        return $this->repository->getList($searchCriteria);
+        return $this->repository->getListWithCustomers($searchCriteria);
     }
 }

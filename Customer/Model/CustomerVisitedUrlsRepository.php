@@ -132,6 +132,24 @@ class CustomerVisitedUrlsRepository implements CustomerVisitedUrlsRepositoryInte
         return $searchResults;
     }
 
+    public function getListWithCustomers(SearchCriteriaInterface $criteria)
+    {
+        /** @var ResourceModel\CustomerVisitedUrls\Collection $collection */
+        $collection = $this->collectionFactory->create();
+
+        $this->processor->process($criteria, $collection);
+
+        $collection->joinCustomer();
+
+        /** @var \Magento\Framework\Api\SearchResultsInterface $searchResults */
+        $searchResults = $this->searchResultsFactory->create();
+        $searchResults->setSearchCriteria($criteria);
+        $searchResults->setItems($collection->getItems());
+        $searchResults->setTotalCount($collection->getSize());
+
+        return $searchResults;
+    }
+
     /**
      * Delete by Id
      *

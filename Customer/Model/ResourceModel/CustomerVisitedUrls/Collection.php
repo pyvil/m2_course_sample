@@ -20,4 +20,16 @@ class Collection extends AbstractCollection
     {
         $this->_init(CustomerVisitedUrls::class, ResourceCustomerVisitedUrls::class);
     }
+
+    /**
+     *
+     */
+    public function joinCustomer()
+    {
+        $this->join(
+            $this->getTable('customer_entity'),
+            'main_table.customer_id=' . $this->getTable('customer_entity') . '.entity_id',
+            ['firstname', 'lastname']
+        );
+    }
 }
