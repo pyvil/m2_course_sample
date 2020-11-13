@@ -19,4 +19,18 @@
 
     <preference for="Smile\Customer\Api\CustomerVisitedUrlsRepositoryInterface"
                 type="Smile\Customer\Model\CustomerVisitedUrlsRepository"/>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="customer_visited_urls_listing_source" xsi:type="string">customerVisitedUrlsCollection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="customerVisitedUrlsCollection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">customer_visited_urls</argument>
+            <argument name="resourceModel" xsi:type="string">Smile\Customer\Model\ResourceModel\CustomerVisitedUrls</argument>
+        </arguments>
+    </virtualType>
 </config>

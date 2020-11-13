@@ -4,9 +4,13 @@
         <resources>
             <resource id="Magento_Backend::admin">
                 <resource id="Smile_Customer::system_config_god_mode" translate="title" title="Smile Customer Config God Mode" sortOrder="10">
-                    <resource id="Smile_Customer::system_config_details" translate="title" title="Smile Customer Config Details" sortOrder="10">
-
-                    </resource>
+                    <resource id="Smile_Customer::system_config_details" translate="title" title="Smile Customer Config Details" sortOrder="10" />
+                </resource>
+                <resource id="Smile_Customer::visited_urls" translate="title" title="Smile Customer Visited Urls" sortOrder="20">
+                    <resource id="Smile_Customer::visited_urls_grid" translate="title" title="Smile Customer Visited Urls Grid" sortOrder="10" />
+                    <resource id="Smile_Customer::visited_urls_edit" translate="title" title="Smile Customer Visited Urls Edit" sortOrder="20" />
+                    <resource id="Smile_Customer::visited_urls_delete" translate="title" title="Smile Customer Visited Urls Delete" sortOrder="30" />
+                    <resource id="Smile_Customer::visited_urls_save" translate="title" title="Smile Customer Visited Urls Save" sortOrder="40" />
                 </resource>
             </resource>
         </resources>

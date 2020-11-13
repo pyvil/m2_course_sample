@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Smile_Customer::visited_url_menu"
+             title="Customer V.U."
+             module="Smile_Customer"
+             resource="Smile_Customer::visited_urls"
+             translate="title toolTip"
+             sortOrder="25"
+             toolTip="Visited Urls" />
+        <add id="Smile_Customer::visited_url_menu_grid"
+             title="Grid"
+             module="Smile_Customer"
+             resource="Smile_Customer::visited_urls_grid"
+             translate="title"
+             parent="Smile_Customer::visited_url_menu"
+             action="customer/visited/urls" />
+        <add id="Smile_Customer::visited_url_menu_edit"
+             title="Add new item"
+             module="Smile_Customer"
+             resource="Smile_Customer::visited_urls_edit"
+             translate="title"
+             parent="Smile_Customer::visited_url_menu"
+             action="customer/visited/edit" />
+    </menu>
+</config>
