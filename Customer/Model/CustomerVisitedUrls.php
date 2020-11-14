@@ -107,4 +107,14 @@ class CustomerVisitedUrls extends AbstractModel implements CustomerVisitedUrlsIn
     {
         return $this->setData(CustomerVisitedUrlsInterface::IS_ACTIVE, $isActive);
     }
+
+    public function getPageTitle(): string
+    {
+        return $this->getData(CustomerVisitedUrlsInterface::PAGE_TITLE);
+    }
+
+    public function setPageTitle(string $pageTitle): CustomerVisitedUrlsInterface
+    {
+        return $this->setData(CustomerVisitedUrlsInterface::PAGE_TITLE, $pageTitle);
+    }
 }

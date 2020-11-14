@@ -1,0 +1,7 @@
+.admin__menu #menu-smile-customer-visited-url-menu > a::before {
+    content: '\e644';
+    display: block;
+    font-size: 2.2rem;
+    height: 2.2rem;
+    margin-bottom: .3rem;
+}
