@@ -62,7 +62,7 @@ class Urls extends AbstractAction implements HttpGetActionInterface
         $resultPage->setActiveMenu('Smile_Customer::visited_urls_menu');
         $resultPage->getConfig()->getTitle()->prepend(__('Customer Visited Urls'));
 
-        // Add breadcrumb item - optiona
+        // Add breadcrumb item - optional
         $resultPage->addBreadcrumb(__('Customer'), __('Customer'));
         $resultPage->addBreadcrumb(__('Visited urls'), __('Visited urls'));
 
