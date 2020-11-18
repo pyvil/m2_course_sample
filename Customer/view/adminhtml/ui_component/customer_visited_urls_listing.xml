@@ -77,19 +77,26 @@
                 </item>
             </argument>
         </column>
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Create at</label>
+            </settings>
+        </column>
         <column name="visited_url">
             <settings>
                 <filter>text</filter>
-                <bodyTmpl>ui/grid/cells/text</bodyTmpl>
-                <label translate="true">Path</label>
+                <dataType>text</dataType>
+                <label translate="true">Visited Url</label>
             </settings>
         </column>
         <column name="page_title">
-            <settings>
-                <filter>text</filter>
-                <bodyTmpl>ui/grid/cells/text</bodyTmpl>
-                <label translate="true">Page title</label>
-            </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Page Title</item>
+                </item>
+            </argument>
         </column>
         <!--<actionsColumn name="actions" class="Dev\Grid\Ui\Component\Category\Listing\Column\Actions" sortOrder="200">
             <argument name="data" xsi:type="array">
