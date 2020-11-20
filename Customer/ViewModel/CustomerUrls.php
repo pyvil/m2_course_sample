@@ -22,17 +22,25 @@ class CustomerUrls implements \Magento\Framework\View\Element\Block\ArgumentInte
     protected $searchCriteriaBuilder;
 
     /**
+     * @var string
+     */
+    protected $testDI;
+
+    /**
      * CustomerUrls constructor.
      *
      * @param \Smile\Customer\Api\CustomerVisitedUrlsRepositoryInterface $repository
      * @param \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param string $testDI
      */
     public function __construct(
         \Smile\Customer\Api\CustomerVisitedUrlsRepositoryInterface $repository,
-        \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder
+        \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder,
+        $testDI = 'No DI inserted'
     ) {
         $this->repository = $repository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+        $this->testDI = $testDI;
     }
 
     /**
@@ -47,5 +55,10 @@ class CustomerUrls implements \Magento\Framework\View\Element\Block\ArgumentInte
         )->create();
 
         return $this->repository->getListWithCustomers($searchCriteria);
+    }
+
+    public function getTestDI()
+    {
+        return $this->testDI;
     }
 }

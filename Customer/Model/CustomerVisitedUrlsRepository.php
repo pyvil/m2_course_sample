@@ -189,11 +189,7 @@ class CustomerVisitedUrlsRepository implements CustomerVisitedUrlsRepositoryInte
      */
     public function save(CustomerVisitedUrlsInterface $model)
     {
-        try {
-            $this->resourceModel->save($model);
-        } catch (\Exception $e) {
-            return null;
-        }
+        $this->resourceModel->save($model);
 
         return $model;
     }

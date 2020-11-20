@@ -11,6 +11,7 @@
 namespace Smile\Course\Block;
 
 use Magento\Framework\View\Element\Template;
+use Smile\Customer\ViewModel\CustomerUrls;
 
 /**
  * Class Page
@@ -22,25 +23,32 @@ class Page extends Template
     protected $_test1 = '';
 
     /**
+     * @var CustomerUrls
+     */
+    protected $customerUrlsVM;
+
+    /**
      * Page constructor.
      *
      * @param Template\Context $context
+     * @param CustomerUrls $customerUrlsVM
      * @param array $data
      */
-    public function __construct(Template\Context $context, array $data = [])
+    public function __construct(Template\Context $context, CustomerUrls $customerUrlsVM, array $data = [])
     {
         parent::__construct($context, $data);
         $this->_test1 = $this->_data['testArrayData']['test1'];
+        $this->customerUrlsVM = $customerUrlsVM;
     }
 
     /**
      * Get hello
      *
-     * @return \Magento\Framework\Phrase
+     * @return string
      */
     public function getHello()
     {
-        return __('%1 %2', $this->_data['testArrayData']['test1'], $this->_data['testArrayData']['test2']);
+        return $this->customerUrlsVM->getTestDI();
     }
 
     public function getText1()

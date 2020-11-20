@@ -114,6 +114,7 @@ class LogVisitedUrlByCustomer implements ObserverInterface
         $requestUri = current(explode('?', $requestUri));
         foreach ($this->_urlPatternsToSkip as $type => $patterns) {
             foreach ($patterns as $pattern) {
+                // $this->{'check' . ucfirst($type)}($requestUri, $pattern);
                 $result = !call_user_func_array([$this, 'check' . ucfirst($type)], [$requestUri, $pattern]);
                 if (!$result) {
                     break 2;

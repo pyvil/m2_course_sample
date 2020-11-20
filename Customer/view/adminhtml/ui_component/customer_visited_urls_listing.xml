@@ -55,58 +55,65 @@
         <paging name="listing_paging"/>
     </listingToolbar>
     <columns name="customer_visited_urls_listing_columns">
-        <selectionsColumn name="ids">
+        <selectionsColumn name="ids" sortOrder="10">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="indexField" xsi:type="string">id</item>
                 </item>
             </argument>
         </selectionsColumn>
-        <column name="id">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">textRange</item>
-                    <item name="label" xsi:type="string" translate="true">ID</item>
-                </item>
-            </argument>
-        </column>
-        <column name="customer_id">
+        <column name="customer_id" sortOrder="20">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="label" xsi:type="string" translate="true">Customer Id</item>
+                    <item name="filter" xsi:type="string">textRange</item>
                 </item>
             </argument>
         </column>
-        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
-            <settings>
-                <filter>dateRange</filter>
-                <dataType>date</dataType>
-                <label translate="true">Create at</label>
-            </settings>
+        <column name="visited_url" component="Magento_Ui/js/grid/columns/link" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Visited Url</item>
+                    <item name="filter" xsi:type="string">text</item>
+                </item>
+            </argument>
         </column>
-        <column name="visited_url">
-            <settings>
-                <filter>text</filter>
-                <dataType>text</dataType>
-                <label translate="true">Visited Url</label>
-            </settings>
-        </column>
-        <column name="page_title">
+        <column name="page_title" sortOrder="40">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="label" xsi:type="string" translate="true">Page Title</item>
+                    <item name="filter" xsi:type="string">text</item>
                 </item>
             </argument>
         </column>
-        <!--<actionsColumn name="actions" class="Dev\Grid\Ui\Component\Category\Listing\Column\Actions" sortOrder="200">
+        <column name="is_active" sortOrder="50">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="resizeEnabled" xsi:type="boolean">false</item>
-                    <item name="resizeDefaultWidth" xsi:type="string">107</item>
-                    <item name="indexField" xsi:type="string">id</item>
+                    <item name="label" xsi:type="string" translate="true">Is active</item>
+                    <item name="filter" xsi:type="string">select</item>
                 </item>
             </argument>
-            <argument name="viewUrl" xsi:type="string">catalog/category/view</argument>
-        </actionsColumn>-->
+        </column>
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="60">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Create at</item>
+                    <item name="filter" xsi:type="string">dateRange</item>
+                </item>
+            </argument>
+        </column>
+        <actionsColumn name="actions" class="Smile\Customer\Ui\Component\Listing\Columns\CustomerVisitedUrlsActions" sortOrder="70">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="viewUrl" xsi:type="string">customer/visited/edit</item>
+                    <item name="deleteUrl" xsi:type="string">customer/visited/delete</item>
+                    <item name="previewUrl" xsi:type="string">customer/visited/preview</item>
+                    <item name="idUrlParam" xsi:type="string">id</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>id</indexField>
+            </settings>
+        </actionsColumn>
     </columns>
 </listing>
