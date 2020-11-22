@@ -47,9 +47,9 @@ class CustomerVisitedUrls extends AbstractModel implements CustomerVisitedUrlsIn
     /**
      * Get customer id
      *
-     * @return int
+     * @return int|string|null
      */
-    public function getCustomerId(): ?int
+    public function getCustomerId()
     {
         return $this->getData(CustomerVisitedUrlsInterface::CUSTOMER_ID);
     }

@@ -38,6 +38,9 @@
                 <item name="label" xsi:type="string" translate="true">General info</item>
             </item>
         </argument>
+        <settings>
+            <collapsible>true</collapsible>
+        </settings>
         <field name="id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -60,6 +63,24 @@
                     </item>
                 </item>
             </argument>
+        </field>
+        <field name="customer_id" component="Magento_Ui/js/form/element/select" formElement="select">
+            <settings>
+                <dataType>int</dataType>
+                <label translate="true">Customer Id</label>
+                <dataScope>customer_id</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <caption translate="true">-- Please Select --</caption>
+                        <options class="Smile\Customer\Api\Data\CustomersOptionsInterface"/>
+                    </settings>
+                </select>
+            </formElements>
         </field>
         <field name="visited_url">
             <argument name="data" xsi:type="array">

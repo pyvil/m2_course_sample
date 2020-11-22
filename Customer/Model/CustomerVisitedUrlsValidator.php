@@ -1,6 +1,7 @@
 <?php
 namespace Smile\Customer\Model;
 
+use Magento\Framework\Validator\NotEmpty;
 use Zend_Validate_Exception;
 
 class CustomerVisitedUrlsValidator extends \Magento\Framework\Validator\AbstractValidator
@@ -17,18 +18,23 @@ class CustomerVisitedUrlsValidator extends \Magento\Framework\Validator\Abstract
     {
         $messages = [];
         $pageTitle = $value->getPageTitle();
-        if (!\Zend_Validate::is($pageTitle, \Magento\Framework\Validator\NotEmpty::class)) {
-            $messages['invalid_page_title'] = 'Page title cannot be empty';
+        if (!\Zend_Validate::is($pageTitle, NotEmpty::class)) {
+            $messages['invalid_page_title'] = __('Page title cannot be empty');
+        }
+
+        $customerId = (int) $value->getCustomerId();
+        if (!is_numeric($customerId) || ($customerId === 0)) {
+            $messages['invalid_customer_id'] = $customerId === 0 ? __('Customer Id cannot be 0') : __('Customer Id should be numeric');
         }
 
         $visitedUrl = $value->getVisitedUrl();
-        if (!\Zend_Validate::is($visitedUrl, \Magento\Framework\Validator\NotEmpty::class)) {
-            $messages['invalid_url'] = 'Url cannot be empty';
+        if (!\Zend_Validate::is($visitedUrl, NotEmpty::class)) {
+            $messages['invalid_url'] = __('Url cannot be empty');
         }
 
         $isActive = $value->isActive();
         if (!is_bool($isActive)) {
-            $messages['invalid_active'] = 'Is active should be Yes or No';
+            $messages['invalid_active'] = __('Is active should be Yes or No');
         }
 
         $this->_addMessages($messages);

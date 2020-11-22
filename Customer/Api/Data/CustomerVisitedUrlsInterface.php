@@ -28,7 +28,7 @@ interface CustomerVisitedUrlsInterface
     const DISABLED = 0;
     /**#@-*/
 
-    public function getCustomerId() : ?int;
+    public function getCustomerId();
     public function getVisitedUrl() : string;
     public function getCreatedAt() : string;
     public function getPageTitle() : string;
