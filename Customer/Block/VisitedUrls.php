@@ -47,4 +47,9 @@ class VisitedUrls extends Template
     {
         return $this->customerUrlsViewModel->getNoLoginCustomerVisitedUrls();
     }
+
+    public function getTestDI()
+    {
+        return $this->customerUrlsViewModel->getTestDI();
+    }
 }

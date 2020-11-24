@@ -1,22 +1,14 @@
 <?xml version="1.0"?>
-<!--
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
--->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\Customer\Block\Account\Dashboard\Info">
         <plugin name="smile_customer_dashboard_info_plugin" type="Smile\Customer\Plugin\CustomerDashboardInfo" sortOrder="10"/>
     </type>
-    <!--getSubscriptionText-->
+
     <type name="Magento\Customer\Block\Account\Dashboard">
         <plugin name="smile_customer_dashboard_plugin" type="Smile\Customer\Plugin\CustomerDashboard" sortOrder="10"/>
     </type>
 
-    <preference for="Smile\Customer\Api\Data\CustomerVisitedUrlsInterface"
-                type="Smile\Customer\Model\CustomerVisitedUrls"/>
-
-    <preference for="Smile\Customer\Api\CustomerVisitedUrlsRepositoryInterface"
-                type="Smile\Customer\Model\CustomerVisitedUrlsRepository"/>
+    <preference for="Smile\Customer\Api\Data\CustomerVisitedUrlsInterface" type="Smile\Customer\Model\CustomerVisitedUrls"/>
+    <preference for="Smile\Customer\Api\CustomerVisitedUrlsRepositoryInterface" type="Smile\Customer\Model\CustomerVisitedUrlsRepository"/>
+    <preference for="Smile\Customer\Api\Data\CustomersOptionsInterface" type="Smile\Customer\Model\CustomersOptions"/>
 </config>

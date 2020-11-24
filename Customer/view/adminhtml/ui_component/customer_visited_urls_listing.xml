@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">customer_visited_urls_listing.customer_visited_urls_listing_source</item>
+            <item name="deps" xsi:type="string">customer_visited_urls_listing.customer_visited_urls_listing_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">customer_visited_urls_listing_columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string">Add new url</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">customer/visited/add</item>
+            </item>
+        </item>
+    </argument>
+    <dataSource name="customer_visited_urls_listing_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Smile\Customer\Ui\DataProvider\CustomerVisitedUrls</argument>
+            <!-- Коли не треба додавати в грід нічого додаткового чого немає в табличці, то використовувати приклад нижче: -->
+            <!--<argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>-->
+            <argument name="name" xsi:type="string">customer_visited_urls_listing_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="templates" xsi:type="array">
+                        <item name="filters" xsi:type="array">
+                            <item name="select" xsi:type="array">
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</item>
+                                <item name="template" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </filters>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="customer_visited_urls_listing_columns">
+        <selectionsColumn name="ids" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        <column name="customer_id" sortOrder="20" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Smile\Customer\Api\Data\CustomersOptionsInterface"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Customer</label>
+            </settings>
+        </column>
+        <column name="visited_url" component="Magento_Ui/js/grid/columns/link" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Visited Url</item>
+                    <item name="filter" xsi:type="string">text</item>
+                </item>
+            </argument>
+        </column>
+        <column name="page_title" sortOrder="40">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Page Title</item>
+                    <item name="filter" xsi:type="string">text</item>
+                </item>
+            </argument>
+        </column>
+        <column name="is_active" sortOrder="50">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Is active</item>
+                    <item name="filter" xsi:type="string">select</item>
+                </item>
+            </argument>
+        </column>
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="60">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Create at</item>
+                    <item name="filter" xsi:type="string">dateRange</item>
+                </item>
+            </argument>
+        </column>
+        <actionsColumn name="actions" class="Smile\Customer\Ui\Component\Listing\Columns\CustomerVisitedUrlsActions" sortOrder="70">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="viewUrl" xsi:type="string">customer/visited/edit</item>
+                    <item name="deleteUrl" xsi:type="string">customer/visited/delete</item>
+                    <item name="previewUrl" xsi:type="string">customer/visited/preview</item>
+                    <item name="idUrlParam" xsi:type="string">id</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>
