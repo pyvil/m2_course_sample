@@ -10,12 +10,13 @@
 
 namespace Smile\Customer\Controller\Adminhtml\Visited;
 
-use \Exception;
+use Exception;
 use Magento\Backend\App\AbstractAction;
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\ResponseInterface;
 use Smile\Customer\Api\CustomerVisitedUrlsRepositoryInterface;
+use Smile\Customer\Api\Data\CustomerVisitedUrlsInterface;
 use Smile\Customer\Api\Data\CustomerVisitedUrlsInterfaceFactory;
 
 /**
@@ -68,14 +69,18 @@ class Save extends AbstractAction implements HttpPostActionInterface
     public function execute()
     {
         $model = $this->customerVisitedUrlsInterfaceFactory->create();
-        $model->setData($this->getRequest()->getParams());
+        $data = $this->getRequest()->getParams();
+        if (!$this->getRequest()->getParam(CustomerVisitedUrlsInterface::ID)) {
+            unset($data[CustomerVisitedUrlsInterface::ID]);
+        }
+        $model->setData($data);
         try {
             $this->customerVisitedUrlsRepository->save($model);
         } catch (Exception $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
         }
 
-        return $this->_redirect('customer/visited/edit', ['id' => $model->getId()]);
+        return $this->_redirect('customer/visited/edit', [CustomerVisitedUrlsInterface::ID => $model->getId()]);
     }
 
     /**

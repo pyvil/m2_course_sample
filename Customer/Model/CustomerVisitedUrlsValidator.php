@@ -1,11 +1,29 @@
 <?php
 namespace Smile\Customer\Model;
 
+use Magento\Customer\Model\Session;
+use Magento\Framework\Validator\AbstractValidator;
 use Magento\Framework\Validator\NotEmpty;
 use Zend_Validate_Exception;
 
-class CustomerVisitedUrlsValidator extends \Magento\Framework\Validator\AbstractValidator
+class CustomerVisitedUrlsValidator extends AbstractValidator
 {
+    /**
+     * @var Session
+     */
+    protected $customerSession;
+
+    /**
+     * CustomerVisitedUrlsValidator constructor.
+     *
+     * @param Session $customerSession
+     */
+    public function __construct(
+        Session $customerSession
+    ) {
+        $this->customerSession = $customerSession;
+    }
+
     /**
      * Is valid
      *
@@ -23,7 +41,7 @@ class CustomerVisitedUrlsValidator extends \Magento\Framework\Validator\Abstract
         }
 
         $customerId = (int) $value->getCustomerId();
-        if (!is_numeric($customerId) || ($customerId === 0)) {
+        if ((!is_numeric($customerId) || ($customerId === 0)) && $this->customerSession->isLoggedIn()) {
             $messages['invalid_customer_id'] = $customerId === 0 ? __('Customer Id cannot be 0') : __('Customer Id should be numeric');
         }
 
