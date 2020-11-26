@@ -89,6 +89,30 @@ class CustomerVisitedUrlsRepository implements CustomerVisitedUrlsRepositoryInte
     }
 
     /**
+     * Get by ID with customer data
+     *
+     * @param int $id
+     *
+     * @return CustomerVisitedUrls
+     * @throws NoSuchEntityException
+     */
+    public function getByIdWithCustomerData(int $id)
+    {
+        /** @var ResourceModel\CustomerVisitedUrls\Collection $collection */
+        $collection = $this->collectionFactory->create();
+        $collection->addFieldToFilter(CustomerVisitedUrlsInterface::ID, $id);
+        $collection->joinCustomerFull();
+        $collection->getSelect()->limit(1);
+        /** @var \Smile\Customer\Model\CustomerVisitedUrls $model */
+        $model = $collection->getFirstItem();
+        if (!$model->getId()) {
+            throw new NoSuchEntityException(__('No such entity %1 !', $id));
+        }
+
+        return $model;
+    }
+
+    /**
      * Get By Url
      *
      * @param string $url

@@ -32,4 +32,13 @@ class Collection extends AbstractCollection
             ['firstname', 'lastname']
         );
     }
+
+    public function joinCustomerFull()
+    {
+        $this->getSelect()->joinLeft(
+            $this->getTable('customer_entity'),
+            'main_table.customer_id=' . $this->getTable('customer_entity') . '.entity_id',
+            ['firstname', 'lastname']
+        );
+    }
 }

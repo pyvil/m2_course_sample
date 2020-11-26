@@ -1,0 +1,46 @@
+<?php
+/** @var $block \Smile\Customer\Block\Adminhtml\Preview */
+?>
+
+<fieldset class="admin__fieldset">
+    <div class="admin__field">
+        <div class="admin__field-label">
+            <label>
+                <?php echo __('Page Title'); ?>
+            </label>
+        </div>
+        <div class="admin__field-control">
+            <?php echo $block->getModel()->getPageTitle(); ?>
+        </div>
+    </div>
+    <div class="admin__field">
+        <div class="admin__field-label">
+            <label>
+                <?php echo __('Customer'); ?>
+            </label>
+        </div>
+        <div class="admin__field-control">
+            <?php echo __('%1 %2', $block->getModel()->getFirstname(), $block->getModel()->getLastname()); ?>
+        </div>
+    </div>
+    <div class="admin__field">
+        <div class="admin__field-label">
+            <label>
+                <?php echo __('Visited Url'); ?>
+            </label>
+        </div>
+        <div class="admin__field-control">
+            <?php echo $block->getModel()->getVisitedUrl(); ?>
+        </div>
+    </div>
+    <div class="admin__field">
+        <div class="admin__field-label">
+            <label>
+                <?php echo __('Is active'); ?>
+            </label>
+        </div>
+        <div class="admin__field-control">
+            <?php echo $block->getModel()->isActive() ? 'Enabled' : 'Disabled'; ?>
+        </div>
+    </div>
+</fieldset>

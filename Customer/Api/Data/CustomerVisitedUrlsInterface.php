@@ -31,7 +31,7 @@ interface CustomerVisitedUrlsInterface
     public function getCustomerId();
     public function getVisitedUrl() : string;
     public function getCreatedAt() : string;
-    public function getPageTitle() : string;
+    public function getPageTitle();
     public function isActive() : bool;
 
     public function setCustomerId(?int $customerId) : self;

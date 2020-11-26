@@ -12,6 +12,8 @@ interface CustomerVisitedUrlsRepositoryInterface
 {
     public function getById(int $id);
 
+    public function getByIdWithCustomerData(int $id);
+
     public function getByUrl(string $url);
 
     public function getList(SearchCriteriaInterface $criteria);
