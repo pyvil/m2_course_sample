@@ -96,7 +96,7 @@ class LogVisitedUrlByCustomer implements ObserverInterface
             $model->setCustomerId($this->customerSession->getCustomerId())
                 ->setVisitedUrl($request->getRequestUri())
                 ->setIsActive(CustomerVisitedUrlsInterface::ENABLED)
-                ->setPageTitle($this->config->getTitle()->get());
+                ->setPageTitle($this->config->getTitle()->get() ?: __('No title'));
             $this->customerVisitedUrlsRepository->save($model);
         }
     }
