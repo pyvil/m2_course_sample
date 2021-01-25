@@ -36,6 +36,7 @@ class VisitedUrls extends Template
         \Smile\Customer\ViewModel\CustomerUrls $customerUrlsViewModel,
         array $data = []
     ) {
+        $this->js()
         parent::__construct($context, $data);
         $this->customerUrlsViewModel = $customerUrlsViewModel;
     }
